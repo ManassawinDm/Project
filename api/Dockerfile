@@ -1,12 +1,12 @@
 # Use a specific version of the Node.js base image, Debian-based
-FROM node:21-bullseye
+FROM node:16-buster
 
 # Set the working directory in the container
 WORKDIR /usr/src/app
 
 # Install Python and pip
-# Bullseye already includes Python 3.9, which is compatible with TensorFlow
-RUN apt-get update && apt-get install -y python3-pip python3-venv \
+RUN apt-get update && apt-get install -y python3 python3-pip python3-venv \
+    && python3 -m ensurepip \
     && python3 -m pip install --upgrade pip setuptools wheel
 
 # Create a Python virtual environment and activate it
