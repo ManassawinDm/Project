@@ -1,7 +1,8 @@
 pyzmq
 requests
 keras
-tensorflow>=2.5  # Keras is now included within TensorFlow
+tensorflow==2.5.0
+ # Keras is now included within TensorFlow
 scikit-learn
 yfinance
 pandas

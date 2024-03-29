@@ -1,16 +1,15 @@
-# Use a specific version of the Node.js base image, Debian-based
-FROM node:16-buster
+# Start with a Python base image
+FROM python:3.7
+
+# Install Node.js
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
+    && apt-get update && apt-get install -y nodejs
 
 # Set the working directory in the container
 WORKDIR /usr/src/app
 
-# Install Python and pip
-RUN apt-get update && apt-get install -y python3 python3-pip python3-venv \
-    && python3 -m pip install --upgrade pip setuptools wheel
-
-# Create a Python virtual environment and activate it
-RUN python3 -m venv /usr/src/app/venv
-ENV PATH="/usr/src/app/venv/bin:$PATH"
+# Upgrade pip, setuptools, and wheel
+RUN python3 -m pip install --upgrade pip setuptools wheel
 
 # Copy the Python requirements file and install Python dependencies
 COPY ./python/requirements.txt .
