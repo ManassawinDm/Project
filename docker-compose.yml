@@ -13,7 +13,7 @@ services:
       - ./api/public:/usr/src/app/public
 
     depends_on:
-      - db
+      - db1
     env_file: 
       - ./api/.env
 
@@ -36,8 +36,8 @@ services:
       - ./frontend/.env
 
 
-  db:
-    container_name: db
+  db1:
+    container_name: db1
     image: mysql:latest
     restart: always
     environment:
@@ -52,12 +52,12 @@ services:
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
-      - "8000:80"
+      - "8123:80"
     restart: always
     environment:
-      PMA_HOST: db
+      PMA_HOST: db1
     depends_on:
-      - db
+      - db1
 
 
       
